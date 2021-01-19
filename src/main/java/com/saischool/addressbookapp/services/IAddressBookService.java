@@ -8,7 +8,7 @@ import java.util.List;
 public interface IAddressBookService {
     List<AddressBookData> getAddressBookData();
 
-    AddressBookData getAddressBookDataById();
+    AddressBookData getAddressBookDataById(int pId);
 
     AddressBookData createAddressBookData(AddressBookDTO addressBookDTO);
 
