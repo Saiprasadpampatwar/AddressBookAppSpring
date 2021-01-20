@@ -1,6 +1,7 @@
 package com.saischool.addressbookapp.services;
 
 import com.saischool.addressbookapp.dto.AddressBookDTO;
+import com.saischool.addressbookapp.exceptions.AddressBookException;
 import com.saischool.addressbookapp.model.AddressBookData;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,10 @@ public class AddressBookService implements IAddressBookService {
 
     @Override
     public AddressBookData getAddressBookDataById(int pId) {
-        AddressBookData addressBookData = null;
-        addressBookData = addressBookDataList.get(pId-1);
-        return addressBookData;
+        return addressBookDataList.stream()
+                .filter(addressBookData->addressBookData.getpId()==pId)
+                .findFirst()
+                .orElseThrow(()-> new AddressBookException("Person Not Found"));
     }
 
     @Override
