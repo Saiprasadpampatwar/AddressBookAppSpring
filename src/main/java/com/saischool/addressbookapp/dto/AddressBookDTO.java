@@ -1,29 +1,31 @@
 package com.saischool.addressbookapp.dto;
 
+import lombok.ToString;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-public class AddressBookDTO {
-    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$",message = "Person firstName Invalid")
-    public String firstName;
-
-    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$",message = "Person lastName Invalid")
-    public String lastName;
+public @ToString class AddressBookDTO {
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$",message = "Person name Invalid")
+    public String name;
 
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$",message = "Person Address Invalid")
     public String address;
 
-    public AddressBookDTO(String firstName, String lastName, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-    }
+    @NotBlank(message = "City cannot be Empty")
+    public String city;
 
-    @Override
-    public String toString() {
-        return "AddressBookDTO{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
+    @NotBlank(message = "State Can not be Emplty")
+    public String state;
+
+    @Pattern(regexp = "[0-9]{6}",message = "Zip Not Valid")
+    public String zip;
+
+    @Pattern(regexp = "[0-9]{10}",message = "mobile Not Valid")
+    public String mobile;
+
+    public int pId;
+
+
+
 }

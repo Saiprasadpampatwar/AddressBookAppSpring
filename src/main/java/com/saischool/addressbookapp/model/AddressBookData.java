@@ -1,51 +1,45 @@
 package com.saischool.addressbookapp.model;
 
 import com.saischool.addressbookapp.dto.AddressBookDTO;
+import lombok.Data;
 
-public class AddressBookData {
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "address_book")
+public @Data class AddressBookData {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
     private int pId;
-    private String firstName;
-    private String lastName;
+
+    @Column(name = "name")
+    private String name;
     private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String mobile;
 
-    public AddressBookData (){}
+    public AddressBookData(){}
 
-    public AddressBookData(int pId, AddressBookDTO addressBookDTO) {
-        this.pId = pId;
-        this.firstName=addressBookDTO.firstName;
-        this.lastName=addressBookDTO.lastName;
+    public AddressBookData(AddressBookDTO addressBookDTO) {
+        this.name=addressBookDTO.name;
         this.address=addressBookDTO.address;
+        this.city = addressBookDTO.city;
+        this.state = addressBookDTO.state;
+        this.zip = addressBookDTO.zip;
+        this.mobile = addressBookDTO.mobile;
     }
 
-    public int getpId() {
-        return pId;
-    }
-
-    public void setpId(int pId) {
-        this.pId = pId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void updateAddressBookData(AddressBookDTO addressBookDTO) {
+        this.name=addressBookDTO.name;
+        this.address=addressBookDTO.address;
+        this.city = addressBookDTO.city;
+        this.state = addressBookDTO.state;
+        this.zip = addressBookDTO.zip;
+        this.mobile = addressBookDTO.mobile;
     }
 }
